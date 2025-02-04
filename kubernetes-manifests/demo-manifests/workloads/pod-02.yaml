@@ -6,6 +6,5 @@ spec:
   containers:
     - name: curl
       image: curlimages/curl
-      command: [ "sleep", "600" ]
-
+      command: ["sleep", "600"]
 # kubectl exec -it curl-pod -- sh

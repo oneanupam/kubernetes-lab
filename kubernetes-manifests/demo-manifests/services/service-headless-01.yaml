@@ -11,5 +11,5 @@ spec:
   selector:
     tier: back-end
   ports:
-  - port: 80 # both the "Service Port and Target Port" must be same
-    targetPort: 80
+    - port: 80 # both the "Service Port and Target Port" must be same
+      targetPort: 80

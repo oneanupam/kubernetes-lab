@@ -20,14 +20,14 @@ spec:
         tier: front-end
     spec:
       containers:
-      - name: eapp-flask-ctr
-        image: ghcr.io/anupam-sy/example-app/eapp:dev-2-cef7980
-        resources:
-          requests:
-            memory: "5Mi"
-            cpu: "5m"
-          limits:
-            memory: "50Mi"
-            cpu: "50m"
-        ports:
-        - containerPort: 4999
+        - name: eapp-flask-ctr
+          image: ghcr.io/anupam-sy/example-app/eapp:dev-2-cef7980
+          resources:
+            requests:
+              memory: "5Mi"
+              cpu: "5m"
+            limits:
+              memory: "50Mi"
+              cpu: "50m"
+          ports:
+            - containerPort: 4999

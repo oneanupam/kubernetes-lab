@@ -9,7 +9,6 @@ spec:
   containers:
     - name: ubuntu
       image: ubuntu:latest
-      command: [ "sleep", "600" ]
-
+      command: ["sleep", "600"]
 # NOTES:
 # kubectl exec -it curl-pod -- sh
