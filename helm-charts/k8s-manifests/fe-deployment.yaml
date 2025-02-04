@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oneapp-ui-deployment
+  labels:
+    app: oneapp-ui
+    instance: dev
+    component: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: oneapp-ui
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: oneapp-ui
+        tier: frontend
+    spec:
+      containers:
+        - name: c-oneapp-ui
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "5Mi"
+              cpu: "5m"
+            limits:
+              memory: "50Mi"
+              cpu: "50m"

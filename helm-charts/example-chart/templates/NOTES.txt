@@ -1,0 +1,20 @@
+{{/* This is comment */}}
+Root Object: {{ . }}
+
+Release name: {{ .Release.Name }}
+Release namespace: {{ .Release.Namespace }}
+
+Chart name: {{ .Chart.Name }}
+Chart type: {{ .Chart.Type }}
+Chart version: {{ .Chart.Version }}
+
+Kubernetes cluster verion: {{ .Capabilities.KubeVersion }}
+Kubernetes cluster verion major: {{ .Capabilities.KubeVersion.Major }}
+Kubernetes cluster verion major: {{ .Capabilities.KubeVersion.Minor }}
+Helm Version: {{ .Capabilities.HelmVersion }}
+
+Template name: {{ .Template.Name }}
+Template basepath: {{ .Template.BasePath }}
+
+File content: {{ .Files.Get "config/oneconfig.ini" }}
+File lines: {{ .Files.Lines "config/oneconfig.ini" }}
