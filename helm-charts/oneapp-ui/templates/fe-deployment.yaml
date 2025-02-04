@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "oneapp-ui.fullname" . }}
+  labels: {{ include "oneapp-ui.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels: {{ include "oneapp-ui.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels: {{ include "oneapp-ui.labels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "oneapp-ui.serviceAccountName" . }}
+      securityContext:
+      {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: c-{{ .Values.nameOverride }}
+          image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 4999
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          resources:
+          {{- toYaml .Values.resources | nindent 12 }}
