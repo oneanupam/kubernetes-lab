@@ -1,13 +1,26 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: tst-pod
+  name: eapp-pod
   labels:
-    app: test
+    app: eapp
     env: dev
 spec:
-  restartPolicy: Always
   containers:
-    - name: tst-container
+    - name: eapp-container
       image: anupam
       args: ["echo", "hello anupam"]
+      env:
+        - name: name
+          value: anupam
+        - name: age
+          value: "28"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysecret
+type: Opaque
+data:
+  password: <Password>
