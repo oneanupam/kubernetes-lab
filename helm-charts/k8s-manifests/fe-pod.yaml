@@ -8,9 +8,8 @@ metadata:
 spec:
   containers:
     - name: eapp-container
-      image: nginx:latest
-      ports:
-        - containerPort: 80
+      image: anupam
+      args: ["echo", "hello anupam"]
       env:
         - name: name
           value: anupam
