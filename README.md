@@ -28,6 +28,10 @@ To execute the manifest files, go to command prompt and then run the following c
 > [!TIP]
 > See the [Kubectl documentation](https://kubernetes.io/docs/reference/kubectl/) for full list of commands.
 
+## Contributing
+
+Contributions are welcome! Please open issues or submit pull requests for improvements or new suggestions. Read the [contributing.md](CONTRIBUTING.md) before starting.
+
 ## References
 - https://kubernetes.io/docs/concepts/
 - https://kubernetes.io/docs/reference/kubectl/
