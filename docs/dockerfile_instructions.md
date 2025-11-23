@@ -1,5 +1,4 @@
 # 📘 Dockerfile Instructions Reference
-
 This repository contains a curated list of essential Dockerfile instructions for creating docker images efficiently. Useful for daily reference and quick lookups.
 
 ## 🧱 Useful Commands
@@ -61,13 +60,14 @@ RUN apt-get update
 RUN apt-get install -y vim
 
 # 8. CMD: This instruction specifies the default program that will execute once the container runs. This keyword is allowed only once (if many, then only the last one takes effect). These instructions doesn't run when building the images but they run when container starts up.
-CMD [“echo”, ”hello world”]
+# Eg: Say the docker file (Dockerfile.01) has below instruction.
+CMD ["echo", "hello world"]
 
 # In case of CMD, the command line parameters will get replaced entirely. Whereas in case of Entrypoint, the command line parameters, will get appended to the ENTRYPOINT instruction. In the below example, If the user passed the parameter from command line with `docker run`, default CMD instruction will be overridden/replaced. In the below case, it will echo -> hello anupam
-docker run custom-ubuntu echo hello anupam
+docker run ubuntu-cmd:v1.0 echo hello anupam
 
-# but, below command will throw the error.
-docker run custom-ubuntu hello anupam
+# but, below command will throw the error. see the explanation below -
+docker run ubuntu-cmd:v1.0 hello anupam
 
 # REMEMBER: When overriding CMD using docker run, you must specify a valid executable command followed by its arguments. If you omit the command, Docker will assume the first argument is the command itself, leading to potential errors if it's not a recognized executable within the container's environment.
 
@@ -82,22 +82,23 @@ SHELL ["/bin/bash", "-c"]
 RUN echo hello
 
 # 9. ENTRYPOINT: ENTRYPOINT is same as CMD instruction means ENTRYPOINT instruction is used to set an executables that will always run when the container starts running. But, ENTRYPOINT instructions are not ignored or overridden, instead command line arguments are appended, if passed.
-ENTRYPOINT [“echo”, ”hello world”]
+# Eg: Say the docker file (Dockerfile.02) has below instruction.
+ENTRYPOINT ["echo", "hello world"]
 
 # USECASE
 # In case of CMD, the command line parameters will get replaced entirely. Whereas in case of Entrypoint, the command line parameters, will get appended to the ENTRYPOINT instruction. In the below example, If the user passed the parameters from command line with `docker run`, parameters will be appended to default ENTRYPOINT instruction. In the below case, it will echo -> hello world hello anupam
-docker run custom-ubuntu hello anupam
+docker run ubuntu-ep:v1.0 hello anupam
 
 # and thats the reason, we usually use ENTRYPOINT instruction with command only and use CMD instruction in the end to make it treated as default argument to ENTRYPOINT, if no command line parameters are passed. Example below -
-
-ENTRYPOINT [“echo”]
+# Eg: Say the docker file (Dockerfile.03) has below instruction.
+ENTRYPOINT ["echo"]
 CMD ["hello world"]
 
-# If we run `docker run` command with a parameter, it will be replaced and then appended to ENTRYPOINT. Hence it will echo -> hello anupam
-docker run custom-ubuntu hello anupam
+# If we run `docker run` command with a parameter like below, it will be replaced and then appended to ENTRYPOINT. Hence it will echo -> hello anupam
+docker run ubuntu-mixed:v1.0 hello anupam
 
 # If we run `docker run` command without any parameter, it will echo - hello world
-docker run custom-ubuntu
+docker run ubuntu-mixed:v1.0
 
 # NOTE: what if you use a command in ENTRYPOINT that must need atleast one argument? Then if you do not use the CMD instruction and not pass any parameter, your container will throw the error. Hence use a CMD instruction to pass atleast one argument to ENTRYPOINT.
 
@@ -114,7 +115,7 @@ docker run custom-ubuntu
 # NOTE: if you ever need to replace the ENTRYPOINT command, use the -> "--entrypoint python" when running docker container.
 
 # HOW DOES THIS WORK IN KUBERNETES PODS?
-# anything you want to append, should be passed as an argument using "args" key in EXEC form. So, the args filed corresponds to CMD instruction in dockerfile, considering the above example.
+# anything you want to append, should be passed as an argument using "args" key in EXEC form. So, the args field corresponds to CMD instruction in dockerfile, considering the above example.
 
 apiVersion: v1
 kind: Pod
@@ -123,10 +124,10 @@ metadata:
 spec:
   containers:
     - name: ubuntu
-      image: anupam-ubuntu
+      image: ubuntu-mixed:v1.0
       args: ["hello anupam"]
 
-# what if we want to replace the ENTRYPOINT command itself? Then use the "command" key in the pod definition. So, the command filed corresponds to ENTRYPOINT instruction in dockerfile, considering the above example.
+# what if we want to replace the ENTRYPOINT command itself? Then use the "command" key in the pod definition. So, the command field corresponds to ENTRYPOINT instruction in dockerfile, considering the above example.
 
 apiVersion: v1
 kind: Pod
@@ -135,7 +136,11 @@ metadata:
 spec:
   containers:
     - name: ubuntu
-      image: anupam-ubuntu
+      image: ubuntu-mixed:v1.0
       command: ["echo2"]
       args: ["hello anupam"]
+
+# 10. EXPOSE: Exposing a port simply informs Docker that the port is available for communication between containers, but does not make it accessible from outside the Docker network unless it is also published. Example below -
+
+EXPOSE 8080
 ```
