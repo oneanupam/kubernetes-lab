@@ -10,8 +10,8 @@ You can setup the kubernetes cluster in different ways. Few popular ways are Min
 ### Software Requirement
 Manifests in this repository are meant to use with Kubernetes version 1.30.5 on your Kubernetes Cluster. Below additional tools are required based on the setup.
 
-- [Cloud SDK](https://cloud.google.com/sdk/install) >= 496.0.0
-- [Kubectl](https://kubernetes.io/docs/tasks/tools/) >= v1.30.5
+- [Cloud SDK](https://cloud.google.com/sdk/install) >= 548.0.0
+- [Kubectl](https://kubernetes.io/docs/tasks/tools/) >= v1.33.5
 
 > [!NOTE]
 > See [Installation Guide](https://kubernetes.io/docs/tasks/tools/) on how to install Kubernetes Tools.
