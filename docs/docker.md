@@ -1,5 +1,4 @@
 # 📘 Docker Commands Reference
-
 This repository contains a curated list of essential `docker` commands for managing docker containers and images efficiently. Useful for daily reference and quick lookups.
 
 ## 🔍 Container Image Registries
@@ -133,7 +132,6 @@ docker run -v /opt/datadir:/var/lib/jenkins jenkins:jenkins
 ```
 
 ## 📌 How to Contribute
-
 Feel free to fork this repo and add your favorite kubectl commands!
 
 ## 🔗 References
