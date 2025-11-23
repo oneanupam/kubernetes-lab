@@ -1,27 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eapp-flask-dep
+  name: eapp-deployment
   labels:
-    app: eapp-flask
-    env: dev
+    app: eapp
+    env: bld
     tier: front-end
-    project: goto-codes
+    bu: gotocodes
 spec:
   replicas: 2 # Optional: initial replica count
   selector:
     matchLabels:
-      app: eapp-flask
+      app: eapp
+      env: bld
       tier: front-end
   template:
     metadata:
+      name: eapp-pod
       labels:
-        app: eapp-flask
+        app: eapp
+        env: bld
         tier: front-end
     spec:
       containers:
-        - name: eapp-flask-ctr
-          image: ghcr.io/anupam-sy/example-app/eapp:dev-2-cef7980
+        - name: eapp-container
+          image: eapp-local:1.0 # ghcr.io/anupam-sy/example-app/eapp:dev-2-cef7980
+          imagePullPolicy: Never
           resources:
             requests:
               memory: "5Mi"
@@ -30,4 +34,4 @@ spec:
               memory: "50Mi"
               cpu: "50m"
           ports:
-            - containerPort: 4999
+            - containerPort: 5001

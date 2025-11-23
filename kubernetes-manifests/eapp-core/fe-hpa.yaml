@@ -6,7 +6,7 @@ metadata:
     app: eapp-flask
     env: dev
     tier: front-end
-    project: goto-codes
+    bu: goto-codes
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

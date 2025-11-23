@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eapp-deployment
+  labels:
+    app: eapp
+    env: bld
+    tier: front-end
+    project: gotocodes
+spec:
+  replicas: 2 # Optional: initial replica count
+  selector:
+    matchLabels:
+      app: eapp
+      env: bld
+      tier: front-end
+  template:
+    metadata:
+      labels:
+        app: eapp
+        env: bld
+        tier: front-end
+    spec:
+      containers:
+        - name: eapp-container
+          image: eapp-local:1.0 # ghcr.io/anupam-sy/example-app/eapp:dev-2-cef7980
+          imagePullPolicy: Never
+          resources:
+            requests:
+              memory: "5Mi"
+              cpu: "5m"
+            limits:
+              memory: "50Mi"
+              cpu: "50m"
+          ports:
+            - containerPort: 5001
