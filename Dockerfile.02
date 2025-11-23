@@ -1,0 +1,6 @@
+# Create the image using the below command -
+# docker build -t ubuntu-ep:v1.0 -f Dockerfile.02 .
+
+FROM ubuntu:26.04
+
+ENTRYPOINT ["echo", "hello world"]
