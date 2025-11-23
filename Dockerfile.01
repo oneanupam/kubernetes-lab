@@ -1,0 +1,6 @@
+# Create the image using the below command -
+# docker build -t ubuntu-cmd:v1.0 -f Dockerfile.01 .
+
+FROM ubuntu:26.04
+
+CMD ["echo", "hello world"]

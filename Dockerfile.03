@@ -1,0 +1,7 @@
+# Create the image using the below command -
+# docker build -t ubuntu-mixed:v1.0 -f Dockerfile.03 .
+
+FROM ubuntu:26.04
+
+ENTRYPOINT ["echo"]
+CMD ["hello world"]
