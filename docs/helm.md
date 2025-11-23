@@ -1,5 +1,4 @@
 # 📘 Helm Commands Reference
-
 This repository contains a curated list of essential `helm` commands for managing Kubernetes packages efficently. Useful for daily reference and quick lookups.
 
 ---
@@ -7,23 +6,36 @@ This repository contains a curated list of essential `helm` commands for managin
 ## 🧱 Useful Commands
 
 ```bash
-# Get the kubectl commands help and examples
-kubectl config -h
+# 1. Helm Config Management
+helm version # Check the installed kubectl client version
+helm env
 
-# Check the installed kubectl client version
-kubectl version --client
+# 2. Helm Chart Management
+helm repo
+helm search
+helm pull
+helm push
+helm registry
+helm create
 
-# View the current kubeconfig settings
-kubectl config view
+helm template
+helm install
+helm upgrade
+helm list
+helm history
+helm get
+helm show
+helm status
+helm rollback
+helm uninstall
 
-# Get all the contexts and show the current active Kubernetes context
-kubectl config get-contexts
-kubectl config current-context
-
-# Switch to a different Kubernetes context
-kubectl config use-context <context-name>
+helm lint
+helm test
 ```
 
 ## 📌 How to Contribute
+Feel free to fork this repo and add your favorite helm commands!
 
-Feel free to fork this repo and add your favorite kubectl commands!
+## References
+- https://helm.sh/docs/helm/
+- https://helm.sh/docs/helm/helm
