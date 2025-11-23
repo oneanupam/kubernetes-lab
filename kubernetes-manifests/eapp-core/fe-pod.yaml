@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: eapp-pod
+  labels:
+    app: eapp
+    env: bld
+    tier: front-end
+    bu: gotocodes
+spec:
+  containers:
+    - name: eapp-container
+      image: eapp-local:1.0
+      imagePullPolicy: Never
+      ports:
+        - containerPort: 5001
